@@ -86,6 +86,7 @@ std::ostream& operator<<(std::ostream& os, const Base& other) {
 	{
 		os << other.pBase[i];
 	}
+	std::cout << std::endl;
 	return os;
 };
 
