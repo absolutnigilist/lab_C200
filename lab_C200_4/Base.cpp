@@ -98,11 +98,14 @@ void Base::Sort() {
 	for (size_t i = 0; i < count - 1; i++) {
 		size_t min = i;
 		for (size_t j = i + 1; j < count; j++) {
-			if (!(pBase[j].key > pBase[min].key)) {
+			if (pBase[j].key < pBase[min].key) {
 				min = j;
 			}
 		}
-		std::swap(pBase[min], pBase[i]);
+		Pair tmp = pBase[min];
+		pBase[min] = pBase[i];
+		pBase[i] = tmp;
+		//std::swap(pBase[min], pBase[i]);
 		std::cout << "Base sortfunc called" << std::endl;
 	}
 };
