@@ -12,7 +12,7 @@ Pair& Pair::operator=(const Pair& other)
 	}
 	return *this;
 };
-Pair& Pair::operator=(Pair& other) {
+Pair& Pair::operator=(Pair&& other) {
 	if (this != &other)
 	{
 		key = std::move(other.key);

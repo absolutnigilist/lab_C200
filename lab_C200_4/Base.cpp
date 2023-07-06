@@ -90,16 +90,20 @@ std::ostream& operator<<(std::ostream& os, const Base& other) {
 };
 
 void Base::Sort() {
+	if (pBase == nullptr) {
+		std::cout << "Base is empty. Nothing to sort." << std::endl;
+		return;
+	}
+
 	for (size_t i = 0; i < count - 1; i++) {
-		int min = i;
-		for (size_t j = i + 1; j < count; j++)
-		{
-			if (pBase[j].key > pBase[min].key);
-			min = j;
+		size_t min = i;
+		for (size_t j = i + 1; j < count; j++) {
+			if (!(pBase[j].key > pBase[min].key)) {
+				min = j;
+			}
 		}
-		Pair tmp = pBase[min];
-		pBase[min] = pBase[i];
-		pBase[i] = tmp;
+		std::swap(pBase[min], pBase[i]);
 		std::cout << "Base sortfunc called" << std::endl;
 	}
 };
+

@@ -17,8 +17,13 @@ MyString::~MyString() {												//деструктор
 	}
 };
 MyString::MyString(const MyString& other) {							//конструктор копирования
-	p_Name = new char[strlen(other.p_Name) + 1];
-	strcpy(p_Name, other.p_Name);
+	if (other.p_Name != nullptr) {
+		p_Name = new char[strlen(other.p_Name) + 1];
+		strcpy(p_Name, other.p_Name);
+	}
+	else
+		p_Name = nullptr;
+	std::cout << "MyString copy constructor called" << std::endl;
 };
 
 MyString::MyString(MyString&& other) {								//перемещающий конструктор копирования
@@ -29,8 +34,12 @@ MyString::MyString(MyString&& other) {								//перемещающий конструктор копиров
 MyString& MyString::operator=(const MyString& other) {				//перегруженный методом оператор присваивания
 	if (this != &other) {
 		delete[]p_Name;
-		p_Name = new char[strlen(other.p_Name) + 1];
-		strcpy(p_Name, other.p_Name);
+			if (other.p_Name != nullptr) {
+			p_Name = new char[strlen(other.p_Name) + 1];
+			strcpy(p_Name, other.p_Name);
+		}
+		else
+			p_Name = nullptr;
 	}
 	return *this;
 };

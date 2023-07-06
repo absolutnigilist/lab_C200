@@ -50,30 +50,32 @@ int _tmain(int argc, _TCHAR* argv[])
 	std::cout << MyBase_2; //выводим информацию обо всех сотрудниках  из базы bd2
 	Base MyBase_3 = MyBase_1;
 	std::cout << MyBase_3; //выводим информацию обо всех сотрудниках  из базы bd3
-
+	stop
 	//«адание 2.2.  
 	//добавьте сотрудников в базу  bd2
 	std::cout << MyBase_2; //выводим информацию обо всех сотрудниках  из базы bd2
+	MyBase_2["Lomakina"] = MyData(MyData::FEMALE, 40, "Verkauferin", 45.000);
+	MyBase_2["Gromova"] = MyData(MyData::FEMALE, 60, "Fahrerin", 50.000);
 	MyBase_1 = MyBase_2;   //  из "большой" в "маленькую"
-	std::cout << MyBase_2; //выводим информацию обо всех сотрудниках  из базы bd1
-
+	std::cout << MyBase_1; //выводим информацию обо всех сотрудниках  из базы bd1
+	stop
 	//«адание 2.3.
 	MyBase_1 = MyBase_3;   //  из "маленькой"  в "большую" 
 	std::cout << MyBase_1; //выводим информацию обо всех сотрудниках  из базы bd1
-	
+	stop
 
 	//«адание 3. вспоминаем про семантику перемещени€
 	//«адание 3.1. создайте копию  базы  bd1
-	Base MyBase_4 = std::move(MyBase_2);
+	Base MyBase_4 = std::move(MyBase_1);
 	std::cout << MyBase_4; //выводим информацию обо всех сотрудниках  из базы bd4
-	std::cout << MyBase_2; //выводим информацию обо всех сотрудниках  из базы bd2
-
+	std::cout << MyBase_1; //выводим информацию обо всех сотрудниках  из базы bd2
+	stop
 	//«адание 3.2. 
 
 	MyBase_3 = std::move(MyBase_4);
 	std::cout << MyBase_3; //выводим информацию обо всех сотрудниках  из базы bd3
 	std::cout << MyBase_4; //выводим информацию обо всех сотрудниках  из базы bd4
-
+	stop
 	//«адание 4.  —ортировка
 
 	//«адание 4.1. –азработайте сортировку базы данных  по возрастанию ключа
@@ -85,8 +87,8 @@ int _tmain(int argc, _TCHAR* argv[])
 		std::cout << MyBase_2 << std::endl;
 		MyBase_2.Sort();
 	std::cout << MyBase_2 << std::endl;
-
-	
+	stop
+		system("pause");
 	return 0;
 }//endmain
 
