@@ -12,7 +12,9 @@ public:
 	~MyString();																//деструктор
 	MyString(const MyString& other);											//конструктор копирования
 	MyString(MyString&&);														//перемещающий конструктор копирования
-	MyString & operator=(const MyString& other);								//перегруженный методом оператор присваивания
+	MyString& operator=(const MyString& other);								//перегруженный методом оператор присваивания
 	friend std::ostream& operator<<(std::ostream& os, const MyString& other);	//перегруженный с помощью ГФ оператор <<
 	bool operator==(const char* string_other)const;
+	bool operator>(const MyString& other)const;
+	bool operator>(const char* string_other) const;
 };

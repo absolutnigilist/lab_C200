@@ -18,5 +18,5 @@ public:
 	MyData& operator=(const MyData& other);
 	MyData& operator=(MyData&& other);
 	friend std::ostream& operator<<(std::ostream& os, const MyData& other);
-		
+
 };

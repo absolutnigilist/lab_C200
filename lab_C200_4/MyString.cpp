@@ -41,3 +41,14 @@ std::ostream& operator<<(std::ostream& os, const MyString& other) {//перегруженн
 bool MyString::operator==(const char* string_other)const {
 	return strcmp(p_Name, string_other) == 0;
 };
+
+bool MyString::operator>(const MyString& other)const {
+	return strcmp(p_Name, other.p_Name) > 0;
+	std::cout << "MyString operator >& called" << std::endl;
+};
+
+bool MyString::operator>(const char* string_other) const {
+	return strcmp(p_Name, string_other) > 0;
+	std::cout << "MyString operator >* called" << std::endl;
+};
+

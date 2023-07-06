@@ -15,4 +15,5 @@ public:
 	MyData& operator[](const char* k);
 	int deletePair(const char* key);
 	friend std::ostream& operator<<(std::ostream& os, const Base& bd);
+	void Sort();
 };
