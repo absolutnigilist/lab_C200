@@ -91,7 +91,6 @@ std::ostream& operator<<(std::ostream& os, const Base& other) {
 
 void Base::Sort() {
 	if (pBase == nullptr) {
-		std::cout << "Base is empty. Nothing to sort." << std::endl;
 		return;
 	}
 
@@ -105,8 +104,7 @@ void Base::Sort() {
 		Pair tmp = pBase[min];
 		pBase[min] = pBase[i];
 		pBase[i] = tmp;
-		//std::swap(pBase[min], pBase[i]);
-		std::cout << "Base sortfunc called" << std::endl;
+		
 	}
 };
 

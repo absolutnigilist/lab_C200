@@ -25,22 +25,23 @@ int _tmain(int argc, _TCHAR* argv[])
 	//(подсказки по реализации базы в файле "База_данных-ооп.pdf")
 	//Например:
 
-		Base MyBase_1;	//создание пустой базы
-		stop
+	Base MyBase_1;	//создание пустой базы
+	stop
 
-		////добавляем сотрудников в базу
-		MyBase_1["Ivanov"] = MyData(MyData::MALE, 30, "Lehrer", 35.000);
-		stop
-		MyBase_1["Petrova"] = MyData(MyData::FEMALE, 35, "Bauer", 45.000);
-		MyBase_1["Sidorov"] = MyData(MyData::MALE, 50, "Fahrer", 50.000);
-		stop
-		std::cout << MyBase_1; //выводим информацию обо всех сотрудниках
-		stop
-		std::cout << MyBase_1["Ivanov"]; //выводим информацию о сотруднике
-		stop
-		MyBase_1.deletePair("Petrova"); //исключаем сотрудника
-		std::cout << MyBase_1; //выводим информацию обо всех сотрудниках  из базы bd1
-		stop
+	////добавляем сотрудников в базу
+	MyBase_1["Ivanov"] = MyData(MyData::MALE, 30, "Lehrer", 35.000);
+	stop
+	MyBase_1["Petrova"] = MyData(MyData::FEMALE, 35, "Bauer", 45.000);
+	stop
+	MyBase_1["Sidorov"] = MyData(MyData::MALE, 50, "Fahrer", 50.000);
+	stop
+	std::cout << MyBase_1; //выводим информацию обо всех сотрудниках
+	stop
+	std::cout << MyBase_1["Ivanov"]; //выводим информацию о сотруднике
+	stop
+	MyBase_1.deletePair("Petrova"); //исключаем сотрудника
+	std::cout << MyBase_1; //выводим информацию обо всех сотрудниках  из базы bd1
+	stop
 
 	//Задание 2. Разработайте необходимые методы для того, чтобы код,
 	// приведенный ниже выполнялся корректно
