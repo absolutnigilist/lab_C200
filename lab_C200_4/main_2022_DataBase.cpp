@@ -49,6 +49,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	//Задание 2.1. создайте 2 копии  базы  bd1
 	Base MyBase_2 = MyBase_1; 
 	std::cout << MyBase_2; //выводим информацию обо всех сотрудниках  из базы bd2
+	stop
 	Base MyBase_3 = MyBase_1;
 	std::cout << MyBase_3; //выводим информацию обо всех сотрудниках  из базы bd3
 	stop
@@ -69,12 +70,13 @@ int _tmain(int argc, _TCHAR* argv[])
 	//Задание 3.1. создайте копию  базы  bd1
 	Base MyBase_4 = std::move(MyBase_1);
 	std::cout << MyBase_4; //выводим информацию обо всех сотрудниках  из базы bd4
-	std::cout << MyBase_1; //выводим информацию обо всех сотрудниках  из базы bd2
+	std::cout << MyBase_1; //выводим информацию обо всех сотрудниках  из базы bd1
 	stop
 	//Задание 3.2. 
 
 	MyBase_3 = std::move(MyBase_4);
 	std::cout << MyBase_3; //выводим информацию обо всех сотрудниках  из базы bd3
+	stop
 	std::cout << MyBase_4; //выводим информацию обо всех сотрудниках  из базы bd4
 	stop
 	//Задание 4.  Сортировка
@@ -85,11 +87,12 @@ int _tmain(int argc, _TCHAR* argv[])
 	//Задание 4.2.Отсортируйте любую базу данных и выведите результат
 
 
-		std::cout << MyBase_2 << std::endl;
-		MyBase_2.Sort();
 	std::cout << MyBase_2 << std::endl;
 	stop
-		system("pause");
+	MyBase_2.Sort();
+	std::cout << MyBase_2 << std::endl;
+	stop
+	system("pause");
 	return 0;
 }//endmain
 
