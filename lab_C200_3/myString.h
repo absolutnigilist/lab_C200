@@ -5,11 +5,13 @@ class MyString {
 	char* p_Name;
 public:
 	MyString();																	//дефолтный окнструктор
-	MyString(const char* str_orig);												//конструктор с параметрами
+	explicit MyString(const char* str_orig);												//конструктор с параметрами
 	~MyString();																//деструктор
 	MyString(const MyString& other);											//конструктор копирования
 	MyString(MyString&& other);													//перемещающий конструктор копирования
 	MyString& operator=(const MyString& other);									//перегруженный оператор присваивания
+	MyString& operator=(const char* string);									//перегруженный оператор присваивания
+	MyString& operator=(MyString&& other);										//перегруженный оператор присваивания
 	MyString operator+(const MyString& other)const;								//перегруженный оператор сложения
 	MyString& operator+=(const MyString& other);								//перегруженный оператор +=
 	const char* GetString() const;												//метод извлекающий строку

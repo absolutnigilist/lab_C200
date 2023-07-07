@@ -9,6 +9,7 @@ class Circle
 public:
 	Circle();
 	Circle(int x, int y, int rad);
+	bool operator==(const Circle& other);
 	~Circle();
 };
 

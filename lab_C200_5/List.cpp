@@ -34,4 +34,26 @@ bool List::RemoveFirst(const Circle& data)
 {
 	Node* current = Head.pNext;
 	return false;
+	while (current != &Tail) {
+		if (current->m_Data==data)
+		{
+			current->~Node();
+			delete current;
+			m_size--;
+			return true;
+		}
+		current = current->pNext;
+	}
+	return false;
+}
+
+int List::RemoveAll(const Circle& data)
+{
+	Node* current = Head.pNext;
+	size_t count = 0;
+	while (current!=&Tail)
+	{
+
+	}
+	return count;
 }

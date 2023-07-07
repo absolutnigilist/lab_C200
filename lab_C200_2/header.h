@@ -27,7 +27,7 @@ protected:
 public:
 	Shape();
 	Shape(COLOR c);
-	Shape(const Shape& other);
+	//Shape(const Shape& other);
 	virtual ~Shape();
 	void WhereAmI()const;
 	virtual void WhereAmIVirtual()const;
@@ -43,7 +43,7 @@ class Rect :public Shape {
 public:
 	Rect();
 	Rect(int val_lenght, int val_height, COLOR c);
-	Rect(const Rect& other);
+	//Rect(const Rect& other);
 	virtual ~Rect();
 	void WhereAmI() const;
 	virtual void WhereAmIVirtual()const;
@@ -56,7 +56,7 @@ class Circle :public Shape {
 public:
 	Circle();
 	Circle(int val_radius, COLOR c);
-	Circle(const Circle& other);
+	//Circle(const Circle& other);
 	Circle(const Rect& other);
 	virtual ~Circle();
 	void WhereAmI();

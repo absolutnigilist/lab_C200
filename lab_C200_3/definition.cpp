@@ -9,10 +9,10 @@ Point::Point(int x, int y) {											//конструктор с параметрами
 	m_x = x;
 	m_y = y;
 };
-Point::Point(const Point& other) {										//конструктор копировани€
-	m_x = other.m_x;
-	m_y = other.m_y;
-};
+//Point::Point(const Point& other) {										//конструктор копировани€
+//	m_x = other.m_x;
+//	m_y = other.m_y;
+//};
 
 Point& Point::operator+=(const Point& other) {							//перегруженный оператор сложени€ присваивани€
 	m_x += other.m_x;
@@ -36,7 +36,7 @@ Point Point::operator+(const Point& other)const {						//перегруженный с помощью
 	return Point(m_x + other.m_x, m_y + other.m_y);
 };
 
-Point& Point::operator+() {												//перегруженный унарный оператор+
+const Point& Point::operator+() const{												//перегруженный унарный оператор+
 	std::cout << "unary operator+()" << std::endl;
 	return *this;
 };
@@ -80,12 +80,12 @@ Point Point::operator-(const Point& other){								//перегруженный оператор вычи
 	return Point(m_x - other.m_x, m_y - other.m_y);
 };
 
-Point& Point::operator=(const Point& other) {							//перегруженный оператор присваивани€ 
-	m_x = other.m_x;
-	m_y = other.m_y;
-	std::cout << "operator=(const Point& other)" << std::endl;
-	return *this;
-};
+//Point& Point::operator=(const Point& other) {							//перегруженный оператор присваивани€ 
+//	m_x = other.m_x;
+//	m_y = other.m_y;
+//	std::cout << "operator=(const Point& other)" << std::endl;
+//	return *this;
+//};
 
 Point operator+(int val, const Point& other){							//перегруженный с помощью √‘ оператор сложени€ инт+класса			
 	std::cout << "operator+(int val, const Point& other)" << std::endl;
@@ -97,10 +97,10 @@ Point operator-(int val, const Point& other) {							//перегруженный с помощью √
 	return Point(val - other.GetPoint_m_x(), val - other.GetPoint_m_y());
 };
 
-Point& operator-(Point& other) {										//перегруженный с помощью √‘ унарный оператор-
+Point operator-(const Point& other) {										//перегруженный с помощью √‘ унарный оператор-
 	std::cout << "unary operator-(const Point& other)" << std::endl;
-	other.SetPoint();
-	return other;
+	Point tmp(-other.m_x, -other.m_y);
+	return tmp;
 }
 	
 std::ostream& operator<<(std::ostream& os, const Point& other) {		//перегруженный оператор вывода в  поток

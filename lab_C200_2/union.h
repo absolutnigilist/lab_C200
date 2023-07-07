@@ -13,16 +13,16 @@ private://спецификатор доступа?
 public:
 	MyByte(unsigned char byte) { m_dec = byte; }	//конструктор 
 
-	void ShowBin() { m_bin.Show(); }
-	void ShowOct() { m_oct.Show(); }
-	void ShowHex() { m_hex.Show(); }
+	void ShowBin()const { m_bin.Show(); }
+	void ShowOct()const { m_oct.Show(); }
+	void ShowHex()const { m_hex.Show(); }
 
-	void ShowDec() { std::cout << static_cast<int>(m_dec) << std::endl; }
-	void ShowChar() { std::cout << m_dec << std::endl; }
+	void ShowDec() const{ std::cout << static_cast<int>(m_dec) << std::endl; }
+	void ShowChar() const{ std::cout << m_dec << std::endl; }
 
-	void ShowBinPos(int pos) { m_bin.ShowPos(pos); }
-	void ShowOctPos(int pos) { m_oct.ShowPos(pos); }
-	void ShowHexPos(int pos) { m_bin.ShowPos(pos); }
+	void ShowBinPos(int pos)const { m_bin.ShowPos(pos); }
+	void ShowOctPos(int pos)const { m_oct.ShowPos(pos); }
+	void ShowHexPos(int pos)const { m_bin.ShowPos(pos); }
 
 	void EditBin(int pos, int val) { m_bin.Edit(pos, val); }
 	void EditOct(int pos, int val) { m_oct.Edit(pos, val); }

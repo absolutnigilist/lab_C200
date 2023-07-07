@@ -1,4 +1,5 @@
 #include "class.h"
+static const char* ar = "0123456789ABCDEF";
 
 void Bin::Show()const{
 		std::cout << 
@@ -13,8 +14,14 @@ void Bin::Show()const{
 		std::endl;
 };
 void Bin::ShowPos(int pos)const {
-	int tmp[] = { m_bin0, m_bin1,m_bin2,m_bin3,m_bin4,m_bin5,m_bin6 };
-	switch (pos)
+	if (pos>=0&&pos<=7)
+	{
+		int tmp[] = { m_bin0, m_bin1,m_bin2,m_bin3,m_bin4,m_bin5,m_bin6 };
+		std::cout << tmp[pos];
+	}else
+		std::cout << "Incorrect val";
+	
+	/*switch (pos)
 	{
 	case 0:
 		std::cout << tmp[0] << std::endl;
@@ -40,7 +47,7 @@ void Bin::ShowPos(int pos)const {
 	default:
 		std::cout << "Incorrect val";
 		break;
-	}
+	}*/
 };
 void Bin::Edit(int pos, int val) {
 	switch (pos)
@@ -120,19 +127,20 @@ void Oct::Edit(int pos, int val) {
 };
 
 void Hex::Show()const{
+	
 	std::cout << 
-		static_cast<int>(m_hex1) << 
-		static_cast<int>(m_hex0) << 
+		static_cast<int>(ar[m_hex1]) << 
+		static_cast<int>(ar[m_hex0]) << 
 		std::endl;
 };
 void Hex::ShowPos(int pos)const{
 	switch (pos)
 	{
 	case 0:
-		std::cout << m_hex0 << std::endl;
+		std::cout << ar[m_hex0] << std::endl;
 		break;
 	case 1:
-		std::cout << m_hex1 << std::endl;
+		std::cout << ar[m_hex1] << std::endl;
 		break;
 	default:
 		std::cout << "Incorrect val";

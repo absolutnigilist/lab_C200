@@ -18,8 +18,13 @@ MyString::~MyString() {									//деструктор
 };								
 
 MyString::MyString(const MyString& other) {				//конструктор копирования
-	p_Name = new char[strlen(other.p_Name) + 1];
-	strcpy(p_Name, other.p_Name);
+	if (other.p_Name != nullptr) {
+		p_Name = new char[strlen(other.p_Name) + 1];
+		strcpy(p_Name, other.p_Name);
+	}
+	else
+		p_Name = nullptr;
+	
 };
 MyString::MyString(MyString&& other) {					//перемещающий конструктор копирования
 	p_Name = other.p_Name;
@@ -41,10 +46,13 @@ const char* MyString::GetString() const{				//метод извлекающий строку
 MyString& MyString::operator=(const MyString& other) {
 	if (this != &other) {
 		delete[] p_Name;
-		p_Name = new char[strlen(other.p_Name) + 1];
-		strcpy(p_Name, other.p_Name);
-		return *this;
-		std::cout << "MyString operator= called" << std::endl;
+		if (other.p_Name != nullptr) {
+			p_Name = new char[strlen(other.p_Name) + 1];
+			strcpy(p_Name, other.p_Name);
+		}
+		else
+			p_Name = nullptr;
+	std::cout << "MyString operator= called" << std::endl;
 	}
 	return *this;
 };
@@ -70,10 +78,10 @@ Shape::Shape(COLOR c) {
 	std::cout << "Shape constructor called" << std::endl;
 };
 
-Shape::Shape(const Shape& other) {
-	m_color = other.m_color;
-	std::cout << "Shape copy constructor called" << std::endl;
-};
+//Shape::Shape(const Shape& other) {
+//	m_color = other.m_color;
+//	std::cout << "Shape copy constructor called" << std::endl;
+//};
 
 Shape::~Shape() {
 	std::cout << "Now I am in Shape's destructor!" << std::endl;
@@ -87,7 +95,7 @@ void Shape::Inflate(int) {
 	std::cout << "Shape Inflate method called" << std::endl;
 };
 
-Rect::Rect() {
+Rect::Rect():Shape(BLUE) {
 	length = 2; 
 	height = 2;
 	std::cout << "Rect default constructor called" << std::endl;
@@ -99,11 +107,11 @@ Rect::Rect(int val_lenght, int val_height, COLOR c):Shape(c){
 	std::cout << "Rect constructor called" << std::endl;
 };
 
-Rect::Rect(const Rect& other):Shape(other) {
-	length = other.length;
-	height = other.height;
-	std::cout << "Rect copy constructor called" << std::endl;
-};
+//Rect::Rect(const Rect& other):Shape(other) {
+//	length = other.length;
+//	height = other.height;
+//	std::cout << "Rect copy constructor called" << std::endl;
+//};
 
 Rect::~Rect() {
 	std::cout << "Now I am in Rect's destructor!" << std::endl;
@@ -131,10 +139,10 @@ Circle::Circle(int val_radius, COLOR c):Shape(c){
 	std::cout << "Circle constructor called" << std::endl;
 };
 
-Circle::Circle(const Circle& other):Shape(other) {
-	radius = other.radius;
-	std::cout << "Circle copy constructor called" << std::endl;
-};
+//Circle::Circle(const Circle& other):Shape(other) {
+//	radius = other.radius;
+//	std::cout << "Circle copy constructor called" << std::endl;
+//};
 
 Circle::Circle(const Rect & other) :Shape(other) {
 	int tmp1, tmp2;

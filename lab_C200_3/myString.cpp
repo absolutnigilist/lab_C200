@@ -22,7 +22,7 @@ MyString::~MyString() {											//деструктор
 	}
 };
 
-MyString::MyString(const MyString& other) {						//конструктор копирования
+MyString::MyString(const MyString& other) {						//конструктор копирования/допили
 	p_Name = new char[strlen(other.p_Name) + 1];
 	strcpy(p_Name, other.p_Name);
 	std::cout << "MyString copy constructor called" << std::endl;
@@ -44,7 +44,7 @@ const char* MyString::GetString() const {						//метод извлекающий строку
 		return "Null_Ptr";
 };
 char& MyString::operator[](int n) {
-	if (n >= 0 && n < sizeof(strlen(p_Name)+1))
+	if (n >= 0 && n < (strlen(p_Name)+1))
 		return p_Name[n];
 	std::cout << "MyString operator[] called" << std::endl;
 };
@@ -70,37 +70,68 @@ MyString& MyString::operator++() {
 	return *this;
 };
 
-MyString& MyString::operator=(const MyString& other) {			//перегруженный оператор присваивания
+MyString& MyString::operator=(const MyString& other) {			//перегруженный оператор присваивания/ добавь еще 2
 	if (this != &other) {
 		delete[] p_Name;
 		p_Name = new char[strlen(other.p_Name) + 1];
 		strcpy(p_Name, other.p_Name);
-		std::cout << "MyString operator= called" << std::endl;
-		return *this;
-		
+		std::cout << "MyString operator= &called" << std::endl;
 	}
 	return *this;
-};
-
-MyString MyString::operator+(const MyString& other)const {		//перегруженный оператор сложения
-	char* buffer = new char[(strlen(p_Name) + strlen(other.p_Name) + 1)];
-	strcpy(buffer, p_Name);
-	strcat(buffer, other.p_Name);
-	MyString tmp(buffer);
-	delete[]buffer;
-	std::cout << "MyString operator+ called" << std::endl;
-	return tmp;
-};
-MyString& MyString::operator+=(const MyString& other) {			//перегруженный оператор +=
-	char* buffer = new char[strlen(p_Name) + strlen(other.p_Name) + 1];
-	strcpy(buffer, p_Name);
-	strcat(buffer, other.p_Name);
-	delete[]p_Name;
-	p_Name= new char[strlen(buffer)];
-	strcpy(p_Name, buffer);
-	delete[]buffer;
-	std::cout << "MyString operator+= called" << std::endl;
+}
+MyString& MyString::operator=(const char* string)
+{
+	if (p_Name != string) {
+		delete[]p_Name;
+		p_Name = new char[strlen(string) + 1];
+		strcpy(p_Name, string);
+		std::cout << "MyString operator= STRING called" << std::endl;
+	}
 	return *this;
+}
+MyString& MyString::operator=(MyString&& other)
+{
+	if (this!=&other){
+		delete[]p_Name;
+		p_Name = other.p_Name;
+		other.p_Name = nullptr;
+		std::cout << "MyString operator= && called" << std::endl;
+	}
+	return*this;
+}
+;
+
+MyString MyString::operator+(const MyString& other)const {		//перегруженный оператор сложения/проверка на нольстроку
+	if (p_Name == nullptr || other.p_Name == nullptr) {
+		return MyString(nullptr);
+	}
+	else {
+		char* buffer = new char[(strlen(p_Name) + strlen(other.p_Name) + 1)];
+		strcpy(buffer, p_Name);
+		strcat(buffer, other.p_Name);
+		MyString tmp(buffer);
+		delete[]buffer;
+		std::cout << "MyString operator+ called" << std::endl;
+		return tmp;
+	}
+	
+};
+MyString& MyString::operator+=(const MyString& other) {			//перегруженный оператор +=/проверка на нольстроку
+	if (p_Name == nullptr || other.p_Name == nullptr) {
+		return *this;
+	}
+	else {
+		char* buffer = new char[strlen(p_Name) + strlen(other.p_Name) + 1];
+		strcpy(buffer, p_Name);
+		strcat(buffer, other.p_Name);
+		delete[]p_Name;
+		p_Name = new char[strlen(buffer)];
+		strcpy(p_Name, buffer);
+		delete[]buffer;
+		std::cout << "MyString operator+= called" << std::endl;
+		return *this;
+	}
+	
 };
 
 std::ostream& operator<<(std::ostream& os, const MyString& string) {//перегруженный оператор потокового вывода
