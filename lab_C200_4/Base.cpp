@@ -91,9 +91,9 @@ std::ostream& operator<<(std::ostream& os, const Base& other) {
 };
 
 void Base::Sort() {
-	/*if (pBase == nullptr) {
+	if (pBase == nullptr) {
 		return;
-	}*/
+	}
 
 	for (size_t i = 0; i < count - 1; i++) {
 		size_t min = i;
@@ -105,7 +105,6 @@ void Base::Sort() {
 		Pair tmp = pBase[min];
 		pBase[min] = pBase[i];
 		pBase[i] = tmp;
-		
 	}
 };
 
