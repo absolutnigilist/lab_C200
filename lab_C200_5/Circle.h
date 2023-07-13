@@ -4,12 +4,16 @@
 class Circle
 {
 	Point center;
-	int radius;
+	int m_radius;
 	
 public:
 	Circle();
 	Circle(int x, int y, int rad);
 	bool operator==(const Circle& other);
 	~Circle();
+	int GetRadius()const;
+	Point GetCenter()const;
+	friend std::ostream& operator<<(std::ostream& os, const Circle& other);
+	friend std::istream& operator>>(std::istream& in, Circle& other);
 };
 

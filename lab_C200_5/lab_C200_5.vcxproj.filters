@@ -29,9 +29,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Файлы ресурсов</Filter>
-    </ClCompile>
     <ClCompile Include="Circle.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
@@ -42,6 +39,9 @@
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
     <ClCompile Include="List.cpp">
+      <Filter>Файлы ресурсов</Filter>
+    </ClCompile>
+    <ClCompile Include="test_list.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
   </ItemGroup>

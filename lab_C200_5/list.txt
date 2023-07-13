@@ -1,0 +1,6 @@
+Content:Center:  x: 1 y: 1 Radius: 1
+Content:Center:  x: 2 y: 2 Radius: 2
+Content:Center:  x: 3 y: 3 Radius: 3
+Content:Center:  x: 4 y: 4 Radius: 4
+Content:Center:  x: 5 y: 5 Radius: 5
+List_size: 5

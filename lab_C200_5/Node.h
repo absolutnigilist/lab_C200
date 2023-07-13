@@ -9,8 +9,15 @@ class Node
 	Circle m_Data;
 public:
 	Node();
-	Node(const Circle& data);
+	Node(Node* prev, const Circle& data);
 	~Node();
+	Node* Get_pPrev()const;
+	Node* Get_pNext()const;
+	Circle Get_m_Data()const;
+	
 	friend class List;
+
+	 
+	
 };
 
