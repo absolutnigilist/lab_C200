@@ -2,9 +2,9 @@
 
 Circle::Circle(): m_radius(1){}
 
-Circle::Circle(int x, int y, int rad) :center(Point(x, y)), m_radius(rad) {}
+Circle::Circle(int x, int y, int rad) :center(x, y), m_radius(rad) {}
 
-bool Circle::operator==(const Circle& other){
+bool Circle::operator==(const Circle& other)const{
 	return ((center == other.center) && (m_radius == other.m_radius));
 }
 

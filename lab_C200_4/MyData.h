@@ -12,11 +12,11 @@ private:
 public:
 	MyData();
 	MyData(Sex s, size_t age, const char* job, float sal);
-	~MyData();
-	MyData(const MyData& other);
-	MyData(MyData&& other);
-	MyData& operator=(const MyData& other);
-	MyData& operator=(MyData&& other);
+	//~MyData();
+	//MyData(const MyData& other);
+	//MyData(MyData&& other);
+	//MyData& operator=(const MyData& other);
+	//MyData& operator=(MyData&& other);
 	friend std::ostream& operator<<(std::ostream& os, const MyData& other);
 
 };

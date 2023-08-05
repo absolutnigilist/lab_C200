@@ -20,34 +20,6 @@ void Bin::ShowPos(int pos)const {
 		std::cout << tmp[pos];
 	}else
 		std::cout << "Incorrect val";
-	
-	/*switch (pos)
-	{
-	case 0:
-		std::cout << tmp[0] << std::endl;
-		break;
-	case 1:
-		std::cout << tmp[1] << std::endl;
-		break;
-	case 2:
-		std::cout << tmp[2] << std::endl;
-		break;
-	case 3:
-		std::cout << tmp[3] << std::endl;
-		break;
-	case 4:
-		std::cout << tmp[4] << std::endl;
-		break;
-	case 5:
-		std::cout << tmp[5] << std::endl;
-		break;
-	case 6:
-		std::cout << tmp[6] << std::endl;
-		break;
-	default:
-		std::cout << "Incorrect val";
-		break;
-	}*/
 };
 void Bin::Edit(int pos, int val) {
 	switch (pos)

@@ -14,14 +14,20 @@ enum WEEKDAY
 
 WEEKDAY operator+(WEEKDAY wd, int days) {							//проверка на отрицательное значение инт
 	int result=(static_cast<int>(wd) + days) % 7;
-	if (result >= 0){
+	if (result <1){
 		result += 7;
 	}
 	return static_cast<WEEKDAY>(result);
 };
-WEEKDAY& operator+=(WEEKDAY& wd, int days) {
-	wd = wd + days;
-	return wd;
+WEEKDAY& operator+=(WEEKDAY& wd, int days) {//проверка 
+	int result= static_cast<int>(wd);
+	result = (result - 1 + days) % 7 + 1;
+	
+	if (result < 1) {
+		result += 7;
+	}
+	
+	return wd = static_cast<WEEKDAY>(result);
 }; 
 std::ostream& operator<<(std::ostream& os, const WEEKDAY& wd) {		//допили
 	if (wd >= 1 && wd <= 7) {

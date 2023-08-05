@@ -189,9 +189,9 @@ int _tmain(int argc, _TCHAR* argv[])
 	//Задание 9. Перегрузите операторы + и +=   для enum WEEKDAY
 	{
 		enum WEEKDAY wd1 = SATURDAY;
-		wd1 = wd1 + 2;
+		wd1 = wd1 + (-3);
 		stop
-		WEEKDAY wd2 = wd1 + 1;
+		WEEKDAY wd2 = wd1 + (-3);
 		wd2 += 2;
 		stop
 	}

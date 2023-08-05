@@ -9,7 +9,7 @@ class Circle
 public:
 	Circle();
 	Circle(int x, int y, int rad);
-	bool operator==(const Circle& other);
+	bool operator==(const Circle& other)const;
 	~Circle();
 	int GetRadius()const;
 	Point GetCenter()const;

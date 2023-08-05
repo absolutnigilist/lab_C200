@@ -9,7 +9,7 @@ Point::Point(int x, int y) {											//конструктор с параметрами
 	m_x = x;
 	m_y = y;
 };
-//Point::Point(const Point& other) {										//конструктор копирования
+//Point::Point(const Point& other) {									//конструктор копирования
 //	m_x = other.m_x;
 //	m_y = other.m_y;
 //};
@@ -36,7 +36,7 @@ Point Point::operator+(const Point& other)const {						//перегруженный с помощью
 	return Point(m_x + other.m_x, m_y + other.m_y);
 };
 
-const Point& Point::operator+() const{												//перегруженный унарный оператор+
+const Point& Point::operator+() const{									//перегруженный унарный оператор+
 	std::cout << "unary operator+()" << std::endl;
 	return *this;
 };

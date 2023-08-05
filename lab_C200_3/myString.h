@@ -5,7 +5,7 @@ class MyString {
 	char* p_Name;
 public:
 	MyString();																	//дефолтный окнструктор
-	explicit MyString(const char* str_orig);												//конструктор с параметрами
+	explicit MyString(const char* str_orig);									//конструктор с параметрами
 	~MyString();																//деструктор
 	MyString(const MyString& other);											//конструктор копирования
 	MyString(MyString&& other);													//перемещающий конструктор копирования

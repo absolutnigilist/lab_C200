@@ -22,10 +22,18 @@ MyString::~MyString() {											//деструктор
 	}
 };
 
-MyString::MyString(const MyString& other) {						//конструктор копирования/допили
-	p_Name = new char[strlen(other.p_Name) + 1];
-	strcpy(p_Name, other.p_Name);
-	std::cout << "MyString copy constructor called" << std::endl;
+MyString::MyString(const MyString& other) {						//конструктор копирования
+	if (other.p_Name!=nullptr)
+	{
+		p_Name = new char[strlen(other.p_Name) + 1];
+		strcpy(p_Name, other.p_Name);
+		std::cout << "MyString copy constructor called" << std::endl;
+	}
+	else
+	{
+		p_Name = nullptr;
+	}
+	
 };
 MyString::MyString(MyString&& other) {							//перемещающий конструктор копирования
 	p_Name = other.p_Name;
@@ -70,7 +78,7 @@ MyString& MyString::operator++() {
 	return *this;
 };
 
-MyString& MyString::operator=(const MyString& other) {			//перегруженный оператор присваивания/ добавь еще 2
+MyString& MyString::operator=(const MyString& other) {			//перегруженный оператор присваивания принимающий объект
 	if (this != &other) {
 		delete[] p_Name;
 		p_Name = new char[strlen(other.p_Name) + 1];
@@ -79,7 +87,7 @@ MyString& MyString::operator=(const MyString& other) {			//перегруженный операто
 	}
 	return *this;
 }
-MyString& MyString::operator=(const char* string)
+MyString& MyString::operator=(const char* string)				//перегруженный оператор присваивания принимающий строку
 {
 	if (p_Name != string) {
 		delete[]p_Name;
@@ -89,7 +97,7 @@ MyString& MyString::operator=(const char* string)
 	}
 	return *this;
 }
-MyString& MyString::operator=(MyString&& other)
+MyString& MyString::operator=(MyString&& other)					//перегруженный оператор присванивания принимающий временный объект
 {
 	if (this!=&other){
 		delete[]p_Name;

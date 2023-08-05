@@ -9,7 +9,7 @@ class Point
 public:
 	Point();																//конструктор по умолчанию
 	Point(int x, int y);													//конструктор с параметрами
-	//Point (const Point& other);												//конструктор копирования
+	//Point (const Point& other);											//конструктор копирования
 	Point& operator+=(const Point& other);									//перегруженный оператор сложения присваивания	
 	Point& operator+=(int val);												//перегруженный оператор сложения присваивания
 	Point operator+(int val)const;											//перегруженный опреатор сложения

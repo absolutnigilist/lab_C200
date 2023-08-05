@@ -5,7 +5,7 @@ Base::Base() :count(0), capacity(0), pBase(nullptr) {};
 Base::~Base() {
 	delete[]pBase;
 };
-Base::Base(const Base& other) :count(other.count), capacity(other.capacity) {
+Base::Base(const Base& other) :count(other.count), capacity(other.count) {//База мб меньше
 	pBase = new Pair[capacity];
 	for (size_t i = 0; i < count; i++)
 	{
@@ -20,10 +20,14 @@ Base::Base(Base&& other) :count(other.count), capacity(other.capacity), pBase(ot
 Base& Base::operator=(const Base& other) {
 	if (this != &other)
 	{
-		delete[]pBase;
+		if (capacity<other.count)
+		{
+			delete[]pBase;
+			capacity = other.count;
+			pBase = new Pair[capacity];
+		}
 		count = other.count;
-		capacity = other.capacity;
-		pBase = new Pair[capacity];
+		
 		for (size_t i = 0; i < count; i++)
 		{
 			pBase[i] = other.pBase[i];
@@ -72,7 +76,7 @@ int Base::deletePair(const char* key) {
 	for (size_t i = 0; i < count; i++) {
 		if (pBase[i] == key) {
 			for (size_t j = i; j < count - 1; j++) {
-				pBase[j] = pBase[j + 1];
+				pBase[j] = std::move(pBase[j + 1]);
 			}
 			count--;
 			return 1;
@@ -102,9 +106,9 @@ void Base::Sort() {
 				min = j;
 			}
 		}
-		Pair tmp = pBase[min];
-		pBase[min] = pBase[i];
-		pBase[i] = tmp;
+		Pair tmp = std::move(pBase[min]);
+		pBase[min] = std::move(pBase[i]);
+		pBase[i] = std::move(tmp);
 	}
 };
 
