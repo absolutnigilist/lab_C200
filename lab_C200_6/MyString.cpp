@@ -1,13 +1,12 @@
 #include "MyString.h"
 
 MyString::MyString() {
-	m_pMyCounter = new Counter();
+	m_pMyCounter = nullptr;
 }
 MyString::MyString(const char* string) {
 	if (string)
 	{
-		m_pMyCounter = new Counter(string);
-		m_pMyCounter->AddOwnner();
+		m_pMyCounter = m_pMyCounter->Find(string);
 	}
 	else
 	{
@@ -15,15 +14,14 @@ MyString::MyString(const char* string) {
 	}
 }
 MyString::MyString(const MyString& other) {
-	if (other.m_pMyCounter!=nullptr)
+	
+	m_pMyCounter = other.m_pMyCounter;
+	if (m_pMyCounter!=nullptr)
 	{
-		m_pMyCounter = other.m_pMyCounter;
+		
 		m_pMyCounter->AddOwnner();
 	}
-	else
-	{
-		m_pMyCounter = nullptr;
-	}
+	
 	
 }
 MyString::~MyString() {
@@ -33,20 +31,47 @@ MyString::~MyString() {
 	}
 }
 MyString& MyString::operator=(const MyString& other) {
-	if (this!=&other)
+	if (m_pMyCounter!=other.m_pMyCounter)
 	{
-		m_pMyCounter->RemoveOwner();
+		if (m_pMyCounter)
+		{
+			m_pMyCounter->RemoveOwner();
+		}
+		
 		m_pMyCounter=other.m_pMyCounter;
-		m_pMyCounter->AddOwnner();
+		if (m_pMyCounter)
+		{
+			m_pMyCounter->AddOwnner();
+		}
+		
 	}
 	return *this;
 }
+
+MyString::MyString(MyString&& other) {
+	m_pMyCounter = other.m_pMyCounter;
+	other.m_pMyCounter = nullptr;
+}
+MyString& MyString::operator=(MyString&& other) {
+	if (m_pMyCounter!=other.m_pMyCounter)
+	{
+		if (m_pMyCounter)
+		{
+			m_pMyCounter->RemoveOwner();
+		}
+		m_pMyCounter = other.m_pMyCounter;
+		other.m_pMyCounter = nullptr;
+	}
+	
+	return *this;
+}
+
 std::ostream& operator<<(std::ostream& os, const MyString& other) {
-	os << other.m_pMyCounter->return_m_pStr();
+	os << other.m_pMyCounter->Set_m_pStr();
 		return os;
 }
-bool MyString::operator==(const MyString& other) {
-	return strcmp(m_pMyCounter->m_pStr, other.m_pMyCounter->m_pStr) == 0;
+bool MyString::operator==(const MyString& other)const {
+	return strcmp(m_pMyCounter->Set_m_pStr(), other.m_pMyCounter->Set_m_pStr()) == 0;
 }
 
 void MyString::print() {

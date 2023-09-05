@@ -6,32 +6,50 @@
 Counter* Counter::m_pHead = nullptr;
 unsigned int Counter::m_curCounters = 0;
 
-Counter::Counter() {
-	m_pStr = nullptr;
-}
+
 Counter::Counter(const char* string) :m_nOwners(1), pNext(nullptr) {
 
-		m_pStr = new char[strlen(string) + 1];
-		strcpy(m_pStr, string);
+	m_pStr = new char[strlen(string) + 1];
+	strcpy(m_pStr, string);
 
-		if (m_curCounters == 0)
+	pNext = m_pHead;
+	m_pHead = this;
+
+	/*if (m_curCounters == 0)
+	{
+		m_pHead = this;
+	}
+	else
+	{
+		Counter* last = m_pHead;
+		while (last->pNext != nullptr)
 		{
-			m_pHead = this;
+			last = last->pNext;
 		}
-		else
-		{
-			Counter* last = m_pHead;
-			while (last->pNext != nullptr)
-			{
-				last = last->pNext;
-			}
-			last->pNext = this;
-		}
-		m_curCounters++;
+		last->pNext = this;
+	}*/
+	m_curCounters++;
 
 }
 Counter::~Counter() {
 	delete[]m_pStr;
+
+	if (this == m_pHead)
+	{
+		m_pHead = pNext;
+	}
+	else
+	{
+		Counter* prev = m_pHead;
+		while (prev->pNext != this)
+		{
+			prev = prev->pNext;
+		}
+				
+		prev->pNext = this->pNext;
+		
+	}
+	m_curCounters--;
 }
 void Counter::AddOwnner() {
 	m_nOwners++;
@@ -40,35 +58,34 @@ void Counter::RemoveOwner() {
 	m_nOwners--;
 	if (m_nOwners == 0)
 	{
-		if (this == m_pHead)
-		{
-			m_pHead == pNext;
-		}
-		else
-		{
-			Counter* prev = m_pHead;
-			while (prev != nullptr && prev->pNext != this)
-			{
-				prev = prev->pNext;
-			}
-			if (prev != nullptr)
-			{
-				prev->pNext = this->pNext;
-			}
-		}
 		delete this;
-		m_curCounters--;
-	}
+	};
+
+
 }
-char* Counter::return_m_pStr() {
+const char* Counter::Set_m_pStr()const {
 	return m_pStr;
 }
 std::ostream& operator<<(std::ostream& os, const Counter& other) {
-	
+
 	os << other.m_pStr;
 	return os;
 }
+Counter* Counter::Find(const char* string) {
+	Counter* current = m_pHead;
+	while (current != nullptr)
+	{
+		if (strcmp(current->m_pStr, string) == 0)
+		{
+			current->m_nOwners++;
+			return current;
+		}
 
+		current = current->pNext;
+
+	}
+	return new Counter(string);
+}
 void Counter::PrintAllStrings() {
 	Counter* current = m_pHead;
 	while (current != nullptr)

@@ -11,16 +11,18 @@ class Counter
 	
 public:
 	
-	Counter();
+	
 	Counter(const char* string);
+	~Counter();
 	void AddOwnner();
 	void RemoveOwner();
-	char* return_m_pStr();
+	static Counter* Find(const char* string);
+	const char* Set_m_pStr()const;
 	friend std::ostream& operator<<(std::ostream& os, const Counter& other);
-	~Counter();
+	
 	static void PrintAllStrings();
 	static void ChangeCaseAllStrings();
 	static void PrintStringsAlphabetically();
-	friend class MyString;
+	
 };
 
